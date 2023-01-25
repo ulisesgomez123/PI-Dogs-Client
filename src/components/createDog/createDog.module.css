@@ -1,0 +1,87 @@
+.label {
+    display: flex;
+    color:blue;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.temperament {
+    display: flex;
+}
+
+p {
+    margin-left: 5px;
+    
+}
+
+.div {
+    margin-left: 10px;
+    color: beige;
+}
+
+.warning {
+    display: flex;
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+span {
+    color: red;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.divsito {
+    color:aliceblue;
+    position: absolute;
+}
+.form {
+    border: solid 2px red;
+    margin: 100px 0px 0 20px;
+    width: 300px;
+    background-color: antiquewhite;
+    border-radius: 5px;
+
+}
+input {
+    display:block;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-size: 25x;
+}
+
+.correct {
+    color: rgb(13, 162, 13); 
+    font-weight: bold;
+    margin-left: 5px;
+}
+.container {
+    display: flex;
+}
+.showDogInput {
+    margin-top: 100px;
+    margin-left: 20px;
+}
+.select {
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-size: 25x;
+}
+.end {
+  display: flex;
+}
+
+button {
+    border-radius: 10px;
+    background-color: rgb(4, 4, 4);
+    font-size: 18px;
+    color: rgb(107, 192, 245);
+    border: solid rgb(64, 62, 62) 1px;
+    margin: 0 0 10px 10px;
+    padding-left: 10px;
+    padding-right: 10px;;
+
+}
