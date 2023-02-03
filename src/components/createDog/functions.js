@@ -1,7 +1,7 @@
     function rectifyNum (e,changeStateError) {
     let err= 'Error';
     let name= e.target.name + err;
-    let verify =/^\d+\-\d+$/.test(e.target.value)
+    let verify =/^\d+-\d+$/.test(e.target.value)
     if (verify) {
       var strToArray= e.target.value.split('-')
        let min = parseInt(strToArray[0])
@@ -77,6 +77,7 @@
         for (let i = 0; i < temps.length; i++) {
           if (t === temps[i].name) return temps[i].id
         }
+        return 
       })
       dispatch(createDog({...input, arrayOfTempsId}))
       setInput({

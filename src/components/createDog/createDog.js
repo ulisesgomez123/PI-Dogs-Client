@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux"; 
 import { createDog, getTemperaments } from "../../redux/actions";
 import { validation,dispatchInfo} from "./functions";
-import img from '../../perro.png';
 
 const CreateDog = () => {
   let dispatch= useDispatch();

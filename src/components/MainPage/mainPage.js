@@ -190,7 +190,7 @@ next</button> : null
 </div>
           {mainPage.dogsFiltered[0] && mainPage.temperaments ? 
           <h2> Found dogs: {mainPage.dogsFiltered.length} </h2> : null }
-{ !mainPage.madeDogs ?
+{ !mainPage.madeDogs && !mainPage.dogsFilteredRender ?
  <div className={style.anotherContainer}>
     <input value={mainPage.value} onChange={e => handleChange(e)} className={style.input}></input>
     <button className={style.searchButton} onClick={() => searchFunction()}>Search</button>
