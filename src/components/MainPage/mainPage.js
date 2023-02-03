@@ -16,31 +16,38 @@ function MainPage () {
   let createdDogs= useSelector( state => state.createdDogs);
   let temperaments= useSelector( state => state.temperaments);
 
+  React.useEffect( ()=>{
+    dispatch(getDogs())
+    dispatch(getTemperaments())
+   },[]) 
+
   const [mainPage,setMainPage] = React.useState({
+    notMadeDogs:false,
+    madeDogs:false,
     beginning: true,
+    dogsFilteredRender: false,
+    dogsBySearch: false,
+    next: false,
+    prev: false,
+    temperaments: false,
     value: '',
     currentPage: 1,
     dogsReverse:[],
+    dogsFiltered:[],
+    storage:[],
     numOfDogsCreated: createdDogs.length,
-    prev: false,
     alphabetical: true,
     byWeight: false,
     ascending: true,
     descending: false,
     orderByWeightAscending: false,
     orderByWeightDescending: false,
-    temperaments: false,
-    madeDogs: [false,true,true]
   })
-  
-  React.useEffect( ()=>{
-    dispatch(getDogs())
-    dispatch(getTemperaments())
-   },[]) 
 
   React.useEffect( ()=>{
     order(mainPage,setMainPage,dogsloaded)
-   },[mainPage.alphabetical,mainPage.byWeight,mainPage.ascending,mainPage.descendiong,mainPage.temperaments]) 
+   },[mainPage.alphabetical,mainPage.byWeight,mainPage.ascending,mainPage.descendiong,
+    mainPage.temperaments,mainPage.madeDogs]) 
 
    React.useEffect( ()=>{
    filter(mainPage,setMainPage,dogsloaded,createdDogs)
@@ -58,6 +65,24 @@ function MainPage () {
       setMainPage((prevState) => {return {...prevState,
         value: '',
         temperaments: false,
+        cache: [mainPage.next,mainPage.prev,mainPage.beginning],
+        dogsBySearch: true,
+        next:false,
+        prev:false,
+        beginning:false
+       }
+     })
+    }
+
+    function backHome () {
+      dispatch(getDogByName(mainPage.value))
+      setMainPage((prevState) => {return {...prevState,
+        value: '',
+        temperaments: false,
+        dogsBySearch: false,
+        next:mainPage.cache[0],
+        prev:mainPage.cache[1],
+        beginning:mainPage.cache[2]
        }
      })
     }
@@ -66,7 +91,7 @@ function MainPage () {
      if (e.target.value === 'alphabetical') {
       setMainPage((prevState) => {return {...prevState,
         alphabetical: true,
-        byWeight: false
+        byWeight: false,
        } 
      })
    }
@@ -99,23 +124,28 @@ function MainPage () {
     }
     function notMadeDogs () {
       setMainPage((prevState) => {return {...prevState,
-        madeDogs: [true,true],
-        numOfDogsCreated: 0,
-        dogsFiltered: false,
+        madeDogs: false,
+        notMadeDogs:true,
+        next:true,
+        dogsFiltered:[],
+        dogsFilteredRender: false,
         temperaments: false,
-        currentPage: mainPage.storage[0] ? isNaN(mainPage.storage[mainPage.storage.length-1]) ? 1 
-        : mainPage.storage[mainPage.storage.length-1] : 1
+        currentPage: mainPage.next || mainPage.prev ? mainPage.currentPage : 1
        } 
      })
     }
 
     function madeDogs () {
       setMainPage((prevState) => {return {...prevState,
-        madeDogs: [false,true],
+        madeDogs: true,
+        notMadeDogs:false,
+        beginning:false,
+        next:false,
+        prev:false,
+        dogsFilteredRender: false,
         numOfDogsCreated: createdDogs.length,
         temperaments: false,
-        currentPage:1,
-        storage: [...mainPage.storage,mainPage.currentPage]
+        currentPage:1
        } 
      })
     }
@@ -134,6 +164,7 @@ function MainPage () {
     <button onClick={() =>buttonTemperaments(setMainPage)}
      className={style.btnFilter}> Dog temperaments</button>
 </div>
+{ !mainPage.madeDogs ?
 <div className={style.selectContainer}>
           <select onChange={(e) => onChange(e)} className={style.select}>
              <option value='alphabetical'>Alphabetical</option>
@@ -144,37 +175,34 @@ function MainPage () {
              <option value='ascending'>Ascending</option>
              <option value='descending'>Descending</option>
           </select>
-</div>
+</div> : null }
 </div>  
 <div className={style.buttonOfNyP}>
-      {mainPage.dogsFiltered ? mainPage.dogsFiltered[0] ? mainPage.dogsFiltered.length > 8 ? 
-<button className={style.buttonOfPrevious} onClick={()=>previous(mainPage,setMainPage)}> 
-previous</button > : null : mainPage.madeDogs.length === 3 || mainPage.madeDogs[0] ? 
+{ !mainPage.dogsBySearch && !mainPage.dogsFilteredRender && !mainPage.madeDogs?
 <button className={style.buttonOfPrevious} onClick={()=>previous(mainPage,setMainPage)}>
-previous</button> : null : mainPage.madeDogs.length === 3 || mainPage.madeDogs[0] ? 
-<button className={style.buttonOfPrevious} onClick={()=>previous(mainPage,setMainPage)}>
-previous</button> : null }
+previous</button>  : null
+}
 
-          {mainPage.dogsFiltered ? mainPage.dogsFiltered[0] ? mainPage.dogsFiltered.length > 8 ? 
-<button className={style.buttonOfNext} onClick={()=>nextFilter(mainPage,setMainPage)}>
-next</button> : null : mainPage.madeDogs.length === 3 || mainPage.madeDogs[0] ? 
+{  !mainPage.dogsBySearch && !mainPage.dogsFilteredRender && !mainPage.madeDogs ?
 <button className={style.buttonOfNext} onClick={()=>next(mainPage,setMainPage,dogsloaded)}>
-next</button> : null :  mainPage.madeDogs.length === 3 || mainPage.madeDogs[0] ?
-<button className={style.buttonOfNext} onClick={()=>next(mainPage,setMainPage,dogsloaded)}>
-next</button> : null }
+next</button> : null
+}
 </div>
-          {mainPage.dogsFiltered && mainPage.temperaments ? 
+          {mainPage.dogsFiltered[0] && mainPage.temperaments ? 
           <h2> Found dogs: {mainPage.dogsFiltered.length} </h2> : null }
-
+{ !mainPage.madeDogs ?
  <div className={style.anotherContainer}>
     <input value={mainPage.value} onChange={e => handleChange(e)} className={style.input}></input>
-    <button className={style.searchButton} onClick={() => searchFunction()}>Search</button>{dogsloadedBySearch[0] ? 
-    <button className={style.backButton} onClick={() => searchFunction()}>back home</button> : null}
-</div>
- {typeof dogsloadedBySearch[0] === 'object' ? <h1>Found dogs: {dogsloadedBySearch.length}</h1> : null}           
+    <button className={style.searchButton} onClick={() => searchFunction()}>Search</button>
+    { dogsloadedBySearch[0] ? 
+    <button className={style.backButton} onClick={backHome}>back home</button> : null}
+</div> : null } 
+ {typeof dogsloadedBySearch[0] === 'object' ? <h1>Found dogs: {dogsloadedBySearch.length}</h1> : null}   
+
         <div className={style.container}>
-        {dogsloadedBySearch[0] ? null : mainPage.currentPage === 1 && mainPage.madeDogs[1]
-         && !mainPage.madeDogs[0] ? createdDogs?.map( d => 
+        { mainPage.madeDogs || typeof createdDogs[0] === 'object'  && mainPage.currentPage === 1 && 
+        !mainPage.temperaments && !mainPage.notMadeDogs ? 
+           createdDogs?.map( d => 
                 <CreateDog
                 name={d.name}
                 key={d.id}
@@ -187,23 +215,13 @@ next</button> : null }
                 />
             ) : null
          }
-         
-          {mainPage.madeDogs.length < 3 && !mainPage.madeDogs[0] ? null :
-          typeof dogsloadedBySearch[0] === 'object' ? dogsloadedBySearch.map( d => dogCard(d))
-             : typeof dogsloadedBySearch[0] === 'string' ? <h1>{dogsloadedBySearch}</h1> :
-             mainPage.dogsFiltered && !mainPage.prev ? mainPage.nextDogs && !mainPage.prev ?
-             mainPage.nextDogs?.map( d => dogCard(d)) 
-             : [...mainPage.dogsFiltered]?.splice(0,8).map( d => dogCard(d)) 
-             : mainPage.prev ? mainPage.prevDogs?.map( d => dogCard(d))
-             : mainPage.nextDogs ? mainPage.nextDogs?.map( d => dogCard(d)) 
-             : mainPage.alphabetical && mainPage.descending ?
-             [...mainPage.dogsReverse]?.slice(0,8 -mainPage.numOfDogsCreated).map( d => dogCard(d)) : 
-             !mainPage.madeDogs[0]  && mainPage.madeDogs[1] && mainPage.madeDogs[2] ?  
-             [...dogsloaded]?.slice(0,8-mainPage.numOfDogsCreated).map( d => dogCard(d)) :
-              mainPage.madeDogs[0]  && mainPage.madeDogs[1] ?  
-             [...dogsloaded]?.slice(0,8-mainPage.numOfDogsCreated).map( d => dogCard(d)) : null
-          } 
-        </div>
+
+         { mainPage.beginning ? [...dogsloaded]?.slice(0,8- mainPage.numOfDogsCreated).map( d => dogCard(d)) : null}
+         { mainPage.next ? mainPage.nextDogs?.map( d => dogCard(d)) : null}
+         { mainPage.prev ? mainPage.prevDogs?.map( d => dogCard(d)) : null}
+         { typeof dogsloadedBySearch[0] === 'object' && mainPage.dogsBySearch ? dogsloadedBySearch.map( d => dogCard(d)) : null}
+         { mainPage.dogsFiltered[0] && mainPage.dogsFilteredRender ? mainPage.dogsFiltered.map( d => dogCard(d)) : null}
+        </div> 
     </div>
         
       );
