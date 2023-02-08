@@ -64,8 +64,9 @@ a.link:visited {
 
 @media only screen and (max-width: 600px) {
     .div {
-        font-size: 14px;
-        margin: 0 10% 0 10%;
+        font-size: 18px;
+        margin: 0 0 0 80%;
+        padding-top: 7px;
         color: rgb(215, 121, 27);
         width: 100%;
         font-weight:bolder;
@@ -73,9 +74,10 @@ a.link:visited {
     }
     
     .img {
-        width: 14px !important;
-        height: 14px !important;
-        margin: 0px;
+        width: 19px !important;
+        height: 19px !important;
+        padding-top: 7px;
+        margin-left: 80px;
     }
     .navbar {
         height: 20px;
@@ -101,8 +103,7 @@ a.link:visited {
         transition-duration: 500ms;
     }
     a.link:link {
-        height: 17px;
-        font-size: 12px;
+        font-size: 15px;
         margin-left: 4px;
         margin-right: 4px;
         text-decoration: none;
@@ -112,13 +113,13 @@ a.link:visited {
      a.link:hover {
         margin-left: 8px;
         margin-right: 8px;
-        font-size: 16px;
+        font-size: 20px;
         color: white;
     }
     a.link.active {
         margin-left: 8px;
         margin-right: 8px;
-        font-size: 16px;
+        font-size: 20px;
         color: rgb(250, 245, 245);
         font-weight: bold;
     }
