@@ -14,10 +14,10 @@ export default function NavBar() {
                     </li>
                 </ul>
             </nav>
-        <div><div className={style.div}>Dog App</div></div>
-        <div>
-               <img className={style.img} src={img} alt='icono'/> 
-            </div>
+        <div className={style.container}>
+            <div className={style.nameApp}>Dog App</div>
+            <img className={style.img} src={img} alt='icono'/> 
+        </div>
     </header>
     )
 }

@@ -151,10 +151,10 @@ function MainPage () {
     }
       return ( 
         <div>
-          <h1>Page: {mainPage.currentPage}</h1>
+          <h1 className={style.h1}>Page: {mainPage.currentPage}</h1>
 
     {mainPage.temperaments ? <select onChange={(e)=>handleChangeSelect(e,setMainPage,mainPage)}
-    className={style.select1}><option key='0'>Temperaments </option> {temperaments?.map(t =>
+    className={style.selectTemperaments}><option key='0'>Temperaments </option> {temperaments?.map(t =>
      <option value={t.name} key={t.id}>{t.name}</option>)}</select> : null }
 
   <div className={style.divContainer}>      
@@ -195,7 +195,7 @@ next</button> : null
     <input value={mainPage.value} onChange={e => handleChange(e)} className={style.input}></input>
     <button className={style.searchButton} onClick={() => searchFunction()}>Search</button>
     { dogsloadedBySearch[0] ? 
-    <button className={style.backButton} onClick={backHome}>back home</button> : null}
+    <button className={style.backButton} onClick={backHome}>back</button> : null}
 </div> : null } 
  {typeof dogsloadedBySearch[0] === 'object' ? <h1>Found dogs: {dogsloadedBySearch.length}</h1> : null}   
 

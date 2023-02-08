@@ -68,7 +68,7 @@
 .buttonOfNyP {
     margin-left: 600px;
 }
-.select1 {
+.selectTemperaments {
     margin-left: 280px;
     font-size: 18px;
     border-radius: 20px;
@@ -107,4 +107,122 @@
     padding-right: 10px;
     height: 35px;
     margin-left: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: fit-content;
+    }
+    
+    .details {
+        margin-left: 10px;
+    }
+    
+    .btnFilter {
+        border-radius: 30px;
+        background-color: rgb(4, 4, 4);
+        font-size: 12px;
+        color: rgb(107, 192, 245);
+        border: solid rgb(64, 62, 62) 1px;
+        margin: 3px 0 3px 0
+    }
+    .btnFilter:hover {
+        margin: 0 10px 0 10px;
+    }
+    
+    .btnFilter {
+        transition-property: margin;
+        transition-duration: 500ms;
+    }
+    .containerOfBtns {
+        margin: 20px 0 10px 10px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .selectContainer {
+     margin-left:0px;
+    }
+    .select {
+        font-size: 12px;
+        margin: 20px 3px 0 3px;
+        border-radius: 20px;
+        padding: 0px;
+        color: black;
+    }
+    .divContainer {
+      display:flex;
+      justify-content: space-between;
+    }
+    .buttonOfNext {
+        border-radius: 10px;
+        margin: 0px 0px 0 5px;
+        font-size: 16px;
+        color: rgb(245, 130, 15);
+        background-color: rgb(77, 70, 70);
+        border: solid rgb(250, 246, 246) 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .buttonOfPrevious {
+        border-radius: 10px;
+        margin: 0px 0px 0 5px;
+        font-size: 16px;
+        color: rgb(245, 130, 15);
+        background-color: rgb(77, 70, 70);
+        border: solid rgb(250, 246, 246) 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .buttonOfNyP {
+        margin-left:0px;
+        display: flex;
+        justify-content: center;
+    }
+    .selectTemperaments {
+        margin-left: 10px;
+        font-size: 12px;
+        border-radius: 20px;
+        padding: 0px;
+        color: black;
+        padding-left: 10px;
+    }
+    .input {
+        border-radius: 20px;
+        margin: 5px 5px 5px 10px;
+        font-size: 14px;
+    }
+    .anotherContainer {
+        display: flex;
+    } 
+    .searchButton {
+        border-radius: 30px;
+        background-color: rgb(4, 4, 4);
+        font-size: 14px;
+        color: rgb(107, 192, 245);
+        border: solid rgb(64, 62, 62) 1px;
+        margin: 7px 0 0 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 22px;
+    }
+    .backButton {
+        border-radius: 30px;
+        background-color: rgb(4, 4, 4);
+        font-size: 14px;
+        color: rgb(107, 192, 245);
+        border: solid rgb(64, 62, 62) 1px;
+        margin: 7px 0 0 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 22px;
+        margin-left: 5px;
+    }
+    .h1 {
+       margin: 5px 0 0 10px;
+       font-size: 24px;
+    }
 }

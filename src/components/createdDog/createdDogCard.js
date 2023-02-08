@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../dogsCard/dogsCard.module.css'
+import style from './createdDog.module.css'
 
 export default function CreateDog ({weight,temperament,name,img,height,lifeSpan}) {
     return ( 

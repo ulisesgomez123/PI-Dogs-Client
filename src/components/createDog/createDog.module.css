@@ -85,3 +85,98 @@ button {
     padding-right: 10px;;
 
 }
+
+@media only screen and (max-width: 600px) {
+    .label {
+        display: flex;
+        color:blue;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    
+    .temperament {
+        display: flex;
+    }
+    
+    p {
+        margin-left: 5px;
+        
+    }
+    
+    .div {
+        margin-left: 10px;
+        color: beige;
+    }
+    
+    .warning {
+        display: flex;
+        color: red;
+        font-weight:bold;
+        font-size: 12px;
+    }
+    
+    span {
+        color: red;
+        font-weight: bold;
+        margin-left: 5px;
+        font-size: 12px;
+    }
+    
+    .divsito {
+        color:aliceblue;
+        position: absolute;
+    }
+    .form {
+        border: solid 2px red;
+        margin: 0px 0px 0 0px;
+        width: 50%;
+        background-color: antiquewhite;
+        border-radius: 5px;
+    
+    }
+    input {
+        display:block;
+        border-radius: 5px;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        font-size: 12x;
+    }
+    
+    .correct {
+        color: rgb(13, 162, 13); 
+        font-weight: bold;
+        margin-left: 5px;
+    }
+    .container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .showDogInput {
+        width: 40%;
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+    .select {
+        width: 55%;
+        border-radius: 5px;
+        margin-left: 5px;
+        margin-bottom: 10px;
+        font-size: 14x;
+    }
+    .end {
+      display: flex;
+    }
+    
+    button {
+        border-radius: 10px;
+        background-color: rgb(4, 4, 4);
+        font-size: 12px;
+        color: rgb(107, 192, 245);
+        border: solid rgb(64, 62, 62) 1px;
+        margin: 0 0 10px 10px;
+        padding-left: 10px;
+        padding-right: 10px;;
+    
+    }
+}

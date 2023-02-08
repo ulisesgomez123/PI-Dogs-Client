@@ -11,6 +11,9 @@ body {
     font-weight: bold;
 }
 
+.imgContainer {
+    display: none;
+    }
 
 @media only screen and (max-width: 600px) {
     body {
@@ -34,5 +37,6 @@ body {
     }
     .img {
         width: 90%;
+        height: 100%;
     }
 }
