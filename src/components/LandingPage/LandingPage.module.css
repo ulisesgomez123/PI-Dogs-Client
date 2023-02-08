@@ -10,3 +10,18 @@ body {
     margin: 0 0 0 10px;
     font-weight: bold;
 }
+
+@media only screen and (max-width: 600px) {
+    body {
+        background: url('../../dogImg-min.jpg') fixed no-repeat center ;
+        background-size: cover;
+    }
+    
+    .p {
+        color: rgb(10, 10, 11);
+        font-size: 14px;
+        padding: 0;
+        margin: 0 0 0 10px;
+        font-weight: bold;
+    }
+}
